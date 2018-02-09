@@ -4,13 +4,20 @@ function destroyer(arr) {
 	// Remove all the values
 	var argArr = arr.slice.call(arguments);
 	var newArr = argArr.shift();
-	for (var i = argArr.length; i >= 0; i--){
-		newArr.filter(function(el, index){
-			if(el == argArr[i]){
-				console.log(newArr);
-				newArr.splice(index, 1);
+	var strippedArr = []
+	for (var i = 0; i < argArr.length; i++){
+		//console.log("newarr: " + newArr);
+		newArr.forEach(function(el, index) {
+			
+			//console.log(el, argArr[i], index);
+			if(el != argArr[i]){
+				strippedArr.push(newArr[index]);
 			}
+			
 		});
+		//console.log('stripped: ' + strippedArr);
+		newArr = strippedArr;
+		strippedArr = [];
 	}
 	return newArr;
   }
