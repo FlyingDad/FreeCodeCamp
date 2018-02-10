@@ -47,3 +47,10 @@ h1 {
 #message {
   color: white;
 }
+#share-buttons img {
+  margin-top: 25px;
+  width: 35px;
+  padding: 5px;
+  border: 0;
+  box-shadow: 0;
+}

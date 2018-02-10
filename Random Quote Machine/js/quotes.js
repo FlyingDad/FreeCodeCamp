@@ -19,6 +19,10 @@ $(document).ready(function(){
       });
 
       $('#message').text(items);
+
+      //Add quote to Twitter link
+      $('#tweet').attr('href', 'https://twitter.com/intent/tweet?hashtags=trump-random-quote&related=freecodecamp&text=' + encodeURIComponent('"' + items + '"'));
+      // href="https://twitter.com/share?url=https://codepen.io/FlyingDad/pen/jZBjOZ&amp;text=Trump%20Random%20Quote&amp;hashtags=trump-random-quote"
     });
   }
 
