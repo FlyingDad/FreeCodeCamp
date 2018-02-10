@@ -1,4 +1,49 @@
-html {
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
   height: 100%;
-  background: linear-gradient(to bottom right, blue, indigo, indigo,blue);
+  background: linear-gradient(to bottom right, black, #3d3d5c, black);
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.container {
+  padding-top: 75px;
+}
+
+.quotebox {
+  margin: 0px auto 25px auto;
+  padding-top: 5px;
+}
+
+h1 {
+  color: white;
+  margin-bottom: 50px;
+}
+
+.quote {
+  margin: 0 auto;
+  width: 50%;
+  background-color: darkblue;
+  padding: 25px;
+  border: 1px solid white;
+  border-radius: 5px;
+}
+
+.getQuoteBtn {
+  margin-top: 50px;
+  padding: 5px;
+  background-color: darkblue;
+  color: white;
+  border: 1px solid white;
+  border-radius: 5px;
+}
+
+#message {
+  color: white;
 }
