@@ -1,0 +1,23 @@
+
+
+h1 {
+	color: plum;
+	height: 100px;
+	text-align: center;
+	padding-top: 20px;
+}
+
+.row {
+	background: aquamarine;
+	border: 1px solid red;
+	margin-bottom: 10px;
+}
+
+.row h3{
+	color: rgb(20, 20, 103);
+	
+}
+
+.row p {
+	color: rgb(20, 20, 103);
+}
