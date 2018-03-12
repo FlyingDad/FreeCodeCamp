@@ -32,26 +32,27 @@ $(document).ready(function () {
 	}
 
 	const url = 'https://en.wikipedia.org/w/api.php?format=json&action=query&generator=search&gsrnamespace=0&gsrlimit=10&prop=extracts&pilimit=max&exintro&explaintext&exsentences=1&exlimit=max&gsrsearch=';
-	const callback = '&callback=?'
+	const callback = '&callback=?';
 	// const api = "https://en.wikipedia.org//w/api.php?action=query&format=json&list=search&utf8=1&srsearch=";
 	//let searchTxt = "Mars";
 
-	const resultsContainer = $('.results')
+	const resultsContainer = $('.results');
 
 	function wikiSearch(searchTxt) {
 		$.getJSON(url + searchTxt + callback, function (data) {})
 			.done(function (data) {
 				//console.log(data);
 				$.each(data.query.pages, function (i, item) {
-					console.log(i);
+					//console.log(i);
 					$('#results').append(`<div class="row fader result-row"><div class="col-sm"><h3>${item.title}</h3><span>${i}</span><p>${item.extract}</p></div></div>`);
 				});
-				//have to add after rows are created
+				// have to add after rows are created
 				// addClickEvent to get articl ID and open wiki article;
-				$('.row').on('click', function () {
+				// used fader class to get unique classname only on result rows
+				$('.fader').on('click', function () {
 					let pageId = $(this).find('span')[0];
 					pageId = $(pageId).text();
-					console.log(pageId);
+					//console.log(pageId);
 					wikiurl = 'http://en.wikipedia.org/?curid=' + pageId;
 					window.open(wikiurl, '_blank');
 				});
