@@ -1,66 +1,27 @@
 /*jshint esversion: 6 */
 
 function smallestCommons(arr) {
-	arr.sort(function(a, b){return a - b;});
+    arr.sort();
+	//arr.sort(function(a, b){return a - b;});
 	var expandedArr = [];
-	for(let i = arr[0]; i <= arr[1]; i++){
+	for(let i = arr[0]; i <= arr[arr.length-1]; i++){
 		expandedArr.push(i);
-	}
-	//set initial count to highest number 
-	let lcd = arr[1];
-	var lcdfound = true;
-	while (true) {
-        passed = expandedArr.every(function(multiple) {
-            return lcd % multiple === 0;
-        });
-        if (passed) {
-            return lcd;
-        } else {
-            lcd++;
-        }
     }
-	// do {		
-	// 	lcdfound = true;
-	// 	for(let i = expandedArr[0]; i <= expandedArr[expandedArr.length -1]; i++){
-	// 		//console.log(i);
-	// 		if(lcd % i != 0){
-	// 			lcdfound = false;
-	// 			break;
-	// 		}
-	// 	}
-	// 	lcd++;
-	// } while(!lcdfound);
+    //console.log(expandedArr);
 
-	return lcd - 1;
-	var range = createRange(array),                 // We create a range using the createRange function.
-        counter = 1,                                // Start the counter (do not start at 0, basic math!)
-        passed;
- 
-    while (true) {                                  // We loop until the end of time (or we return a result)
-        passed = range.every(function(multiple) {   // If every number in the range passes, 'passed' will be true, else, it will be false.
-            return counter % multiple === 0;            // If true, that number is a multiple.
-        });
-        if (passed) {
-            return counter;                         // If all passed, return the counter var, as it is the answer.
-        } else {
-            counter++;                              // If any test failed, increment the counter and start over.
+    var x = true;
+    var leastCommonMultiple = true;
+    while(x){
+        leastCommonMultiple ++;
+        for(var i = expandedArr[0]; i <= arr[arr.length-1]; i++){
+            if(leastCommonMultiple % i !== 0){
+                break; // we have a remander, so go to next iteration
+            } else if(i==expandedArr[expandedArr.length-1]){
+                x = false;
+            }
         }
     }
- 
-    function createRange(array) {
-        var range = [];
-        var highest = array.reduce(function(a, b) {
-            return Math.max(a, b);
-        });
-        var lowest = array.reduce(function(a, b) {
-            return Math.min(a, b);
-        });
-        for (var i = lowest; i <= highest; i++) {
-            range.push(i);
-        }
-        return range;
-    }
-
+    return leastCommonMultiple;
 }
 
 

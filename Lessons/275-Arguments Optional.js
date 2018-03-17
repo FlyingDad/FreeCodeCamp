@@ -12,27 +12,31 @@
 
 
 function addTogether() {
-	console.log(arguments.length);
-	function sum() {
-		//return(undefined);
-		//if(!arguments) {return undefined;}
-		// console.log("in the closure");
-		//console.log("Args - " + arguments.length);
-		var args = Array.from(arguments);
-		args.forEach(function(arg){
-			if(arg == NaN){
-				console.log("NAN");
-			}
-		});
-		return arguments;
+	// create array that slices arguments
+	var argsArr = [].slice.call(arguments);
+	// check if all parameters are numbers, else return undefined
+	if(!argsArr.every(function(arg){
+		return typeof arg === 'number';
+	})){
+		return undefined;
 	}
-	
-  return sum;
+	// if array has two values, add them and return the sum
+	if(argsArr.length === 2){
+		return argsArr[0] + argsArr[1];
+	} else {
+		//store first param
+		var arg1 = argsArr[0];
+		//store function that will take second prameter and call itself to add values
+		var addAnother=function(arg2){
+			return addTogether(arg1, arg2);
+		};
+		return addAnother;
+		//return the value		
+	}
 }
-
 console.log(addTogether(2, 3));// should return 5.
 console.log(addTogether(2)(3));// should return 5.
-//console.log(addTogether("http://bit.ly/IqT6zt"));// should return undefined.
-//console.log(addTogether(2, "3"));// should return undefined.
-//console.log(addTogether(2)([3]));// should return undefined.
+console.log(addTogether("http://bit.ly/IqT6zt"));// should return undefined.
+console.log(addTogether(2, "3"));// should return undefined.
+console.log(addTogether(2)([3]));// should return undefined.
 
