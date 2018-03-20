@@ -13,6 +13,10 @@ $(document).ready(function () {
 		}
 	});
 
+	$('input').click(function() {
+		$('input[type=text]').val('');
+		console.log('clear');
+	});
 	// search on enter key pressed
 	$('input').on('keypress', function (e) {
 		if (e.which == 13) {
@@ -24,6 +28,15 @@ $(document).ready(function () {
 				alert("Please enter some text to search!");
 			}
 		}
+	});
+
+	// addlistener for every row(div) created
+	$('#results').on('click','div', function () {
+		let pageId = $(this).find('span')[0];
+		pageId = $(pageId).text();
+		//console.log(pageId);
+		wikiurl = 'http://en.wikipedia.org/?curid=' + pageId;
+		window.open(wikiurl, '_blank');
 	});
 
 	// clear any previous search resuots from DOM
@@ -44,18 +57,10 @@ $(document).ready(function () {
 				//console.log(data);
 				$.each(data.query.pages, function (i, item) {
 					//console.log(i);
-					$('#results').append(`<div class="row fader result-row"><div class="col-sm"><h3>${item.title}</h3><span>${i}</span><p>${item.extract}</p></div></div>`);
+					const newRow = `<div class="row fader result-row"><div class="col-sm"><h3>${item.title}</h3><span>${i}</span><p>${item.extract}</p></div></div>`;
+					$('#results').append(newRow).hide().slideDown('slow');
 				});
-				// have to add after rows are created
-				// addClickEvent to get articl ID and open wiki article;
-				// used fader class to get unique classname only on result rows
-				$('.fader').on('click', function () {
-					let pageId = $(this).find('span')[0];
-					pageId = $(pageId).text();
-					//console.log(pageId);
-					wikiurl = 'http://en.wikipedia.org/?curid=' + pageId;
-					window.open(wikiurl, '_blank');
-				});
+				
 			})
 			.fail(function (error) {
 				console.warn(error);
