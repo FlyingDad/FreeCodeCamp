@@ -5,7 +5,7 @@
 // 	sum += +argsArr[i];
 // }
 // console.log(sum);
-var fs = require('fs');
+
 // var text = fs.readFileSync(process.argv[2]).toString();
 // //console.log(text);
 // var split = text.split('\n');
@@ -19,19 +19,6 @@ var fs = require('fs');
 // 		console.log(split.length - 1);
 // 	}
 // });
-
-fs.readdir(process.argv[2],function(err, data){
-		if(err){
-		//console.log(err);
-	} else {
-		//console.log(data);
-		var filtered = data.filter(function(file){
-			//console.log(file);
-			return file.includes('.' + process.argv[3]);
-		});
-		//console.log(filtered);
-		filtered.forEach(function(file){
-		  console.log(file);
-		});
-	}
-});
+var findFiles = require('./findfiles.js');
+var result = findFiles.findFiles('./','txt');
+console.log("results:" + result);
