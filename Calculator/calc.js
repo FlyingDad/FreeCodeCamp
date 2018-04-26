@@ -5,11 +5,9 @@ $( document ).ready(function() {
 
 let accumulator = 0;
 let inputReg = 0;
-let inputRegShift = 1;  // keep track of 10's
 let sign = true;   // true = pos, false: neg number
 let calcInProgress = false; // true = button pessed)except equal
 let operation = '';
-
 display(0);
 
 	$('.jqbtn').on('click', function(){
@@ -21,13 +19,15 @@ display(0);
 
 	// Check button type, and perform action
 	function checkButtonType(input){
-		console.log("Check: " + input);
+		console.log("Check: " + input, calcInProgress);
 		if(input == 'x' || input == '/' || input == '+' || input == '-') {
 			//console.log('do math');
 			//display('math');
 			performCalc(input);
-		} else if(input == 'ac' || input == 'ce') {
+		} else if(input == 'ac') {
 			clear();
+		} else if(input == 'ce') {
+			clearEntry();
 		} else if(input == 'sign'){
 			console.log('change sign');
 		} else if (input == '.'){
@@ -38,6 +38,7 @@ display(0);
 	}
 	// Calulation button pressed
 	function performCalc(calcType){
+		console.log(calcInProgress);
 		if(!calcInProgress){
 			console.log('no-calc', calcType);
 			accumulator = inputReg;
@@ -52,14 +53,36 @@ display(0);
 					clearEntry();
 					display(accumulator);
 					break;
+			case '-':
+				  operation = calcType;
+					console.log('sub');
+					accumulator -= inputReg;
+					clearEntry();
+					display(accumulator);
+					break;
+			case 'x':
+				  operation = calcType;
+					console.log('mult');
+					accumulator *= inputReg;
+					clearEntry();
+					display(accumulator);
+					break;
+			case '/':
+				  operation = calcType;
+					console.log('divide');
+					accumulator /= inputReg;
+					clearEntry();
+					display(accumulator);
+					break;
 			}
 		}
 		calcInProgress = true;
 	}
 
 	function equalPressed(){
-		console.log('equal: ' + operation)
+		console.log('equal: ' + operation);
 		performCalc(operation);
+		calcInProgress = false;
 	}
 	// All Clear pressed
 	function clear() {
@@ -67,12 +90,14 @@ display(0);
 		inputReg = 0;
 		inputRegShift = 1;
 		sign= true;
+		operation = '';
+		calcInProgress = false;
 		display(0);
 	}
 
-	function clearEntry() {
+	function clearEntry() {	
 		inputReg = 0;
-		inputRegShift = 1;
+		//inputRegShift = 1;
 		display(0);
 	}
 	// Clear Entry pressed
@@ -100,6 +125,7 @@ display(0);
 		$('#acc').text(accumulator);
 		$('#ireg').text(inputReg);
 		$('#ctype').text(operation);
+		$('#cinprogress').text(calcInProgress == true ? 'true' : 'false');
 	}
 
 });
