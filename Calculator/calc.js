@@ -8,6 +8,8 @@ let inputReg = 0;
 let sign = true;   // true = pos, false: neg number
 let calcInProgress = false; // true = button pessed)except equal
 let operation = '';
+let equalPressed = false;
+
 display(0);
 
 	$('.jqbtn').on('click', function(){
@@ -20,12 +22,34 @@ display(0);
 	// Check button type, and perform action
 	function checkButtonType(input){
 		//console.log("Check: " + input, calcInProgress);
-		if(input == 'x' || input == '/' || input == '+' || input == '-' || input == '=') {
-			//console.log('do math');
-			//display('math');
-			performCalc(input);
-		} else if(input == 'ac') {
-			clear();
+		if(input == 'x' || input == '/' || input == '+' || input == '-') {
+			if(equalPressed){
+				operation = input;
+				inputReg = 0;
+				equalPressed = false;
+				return;
+			} else if(calcInProgress){
+				if(operation == input){
+					performCalc(input);
+				} else {
+					operation = input;
+					inputReg = 0;
+					equalPressed = false;
+					return;
+				}
+			} else if (operation == '') {
+				return;
+			}else{
+				performCalc(input);
+			}
+		} else if(input == "="){
+			if(operation == ''){
+				return;
+			}
+			equalPressed = true;
+			performCalc(operation);
+	  }else if(input == 'ac') {
+			resetCalculator();
 		} else if(input == 'ce') {
 			clearEntry();
 		} else if(input == 'sign'){
@@ -37,12 +61,16 @@ display(0);
 		}
 	}
 	// Calulation button pressed
-	function performCalc(calcType){
+	function performCalc(calcType){	
+		// if (operation != calcType) {
+		// 	calcInProgress = false;
+		// }
 		console.log(calcInProgress);
 		if(!calcInProgress){
 			console.log('no-calc', calcType);
 			accumulator = inputReg;
 			operation = calcType;
+			calcInProgress = true;
 			inputReg = 0;
 		} else {
 			console.log('operation: ' + operation);
@@ -58,21 +86,21 @@ display(0);
 				  //operation = calcType;
 					console.log('sub');
 					accumulator -= inputReg;
-					clearEntry();
+					//clearEntry();
 					display(accumulator);
 					break;
 			case 'x':
 				  //operation = calcType;
 					console.log('mult');
 					accumulator *= inputReg;
-					clearEntry();
+					//clearEntry();
 					display(accumulator);
 					break;
 			case '/':
 				  //operation = calcType;
 					console.log('divide');
 					accumulator /= inputReg;
-					clearEntry();
+					//clearEntry();
 					display(accumulator);
 					break;
 			}
@@ -81,28 +109,10 @@ display(0);
 		testDisplay();
 	}
 
-	// function equalPressed(){
-	// 	console.log('equal: ' + operation);
-	// 	performCalc(operation);
-	// 	//calcInProgress = false;
-	// 	testDisplay();
-	// }
-	// All Clear pressed
-	function clear() {
-		accumulator = 0;
-		inputReg = 0;
-		inputRegShift = 1;
-		sign= true;
-		operation = '';
-		calcInProgress = false;
-		display(0);
-		testDisplay();
-	}
-
 	function clearEntry() {	
 		inputReg = 0;
 		//inputRegShift = 1;
-		display(0);
+		//display(0);
 		testDisplay();
 	}
 	// Clear Entry pressed
@@ -128,6 +138,18 @@ display(0);
 		// $('#ireg').text(inputReg);
 		// $('#ctype').text(operation);
 		// $('#cinprogress').text(calcInProgress == true ? 'true' : 'false');
+	}
+
+	function resetCalculator(){
+		console.log('resetting');
+		accumulator = 0;
+	  inputReg = 0;
+		sign = true;   // true = pos, false: neg number
+		calcInProgress = false; // true = button pessed)except equal
+		operation = '';
+		equalPressed = false;
+		display(0);
+		testDisplay();
 	}
 
 	function testDisplay(){
