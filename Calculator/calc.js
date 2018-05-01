@@ -19,8 +19,8 @@ display(0);
 
 	// Check button type, and perform action
 	function checkButtonType(input){
-		console.log("Check: " + input, calcInProgress);
-		if(input == 'x' || input == '/' || input == '+' || input == '-') {
+		//console.log("Check: " + input, calcInProgress);
+		if(input == 'x' || input == '/' || input == '+' || input == '-' || input == '=') {
 			//console.log('do math');
 			//display('math');
 			performCalc(input);
@@ -45,30 +45,31 @@ display(0);
 			operation = calcType;
 			inputReg = 0;
 		} else {
-			switch(operation) {
+			console.log('operation: ' + operation);
+			switch(operation) {				
 				case '+':
-				  operation = calcType;
+				  //operation = calcType;
 					console.log('adding');
 					accumulator += inputReg;
-					clearEntry();
+					//clearEntry();
 					display(accumulator);
 					break;
 			case '-':
-				  operation = calcType;
+				  //operation = calcType;
 					console.log('sub');
 					accumulator -= inputReg;
 					clearEntry();
 					display(accumulator);
 					break;
 			case 'x':
-				  operation = calcType;
+				  //operation = calcType;
 					console.log('mult');
 					accumulator *= inputReg;
 					clearEntry();
 					display(accumulator);
 					break;
 			case '/':
-				  operation = calcType;
+				  //operation = calcType;
 					console.log('divide');
 					accumulator /= inputReg;
 					clearEntry();
@@ -77,13 +78,15 @@ display(0);
 			}
 		}
 		calcInProgress = true;
+		testDisplay();
 	}
 
-	function equalPressed(){
-		console.log('equal: ' + operation);
-		performCalc(operation);
-		calcInProgress = false;
-	}
+	// function equalPressed(){
+	// 	console.log('equal: ' + operation);
+	// 	performCalc(operation);
+	// 	//calcInProgress = false;
+	// 	testDisplay();
+	// }
 	// All Clear pressed
 	function clear() {
 		accumulator = 0;
@@ -93,12 +96,14 @@ display(0);
 		operation = '';
 		calcInProgress = false;
 		display(0);
+		testDisplay();
 	}
 
 	function clearEntry() {	
 		inputReg = 0;
 		//inputRegShift = 1;
 		display(0);
+		testDisplay();
 	}
 	// Clear Entry pressed
 	// Number pressed
@@ -106,22 +111,26 @@ display(0);
 		//if first number pressed, put it in indexreg
 		let val = Number(number);
 		if(inputReg === 0){
-			inputReg += val;
+			inputReg = val;
 		} else {
 			//shift number left ( x 10)
 			inputReg *= 10;
 			inputReg += val;
 		}	
 		display(inputReg);
+		testDisplay();
 	}
-	// Equal pressed
-	$('.equal').on('click', function() {
-		equalPressed();
-	});
 
 	function display(result){
 		console.log('result: ' + result);
 		$('.col-display h2').text(result.toString());
+		// $('#acc').text(accumulator);
+		// $('#ireg').text(inputReg);
+		// $('#ctype').text(operation);
+		// $('#cinprogress').text(calcInProgress == true ? 'true' : 'false');
+	}
+
+	function testDisplay(){
 		$('#acc').text(accumulator);
 		$('#ireg').text(inputReg);
 		$('#ctype').text(operation);
