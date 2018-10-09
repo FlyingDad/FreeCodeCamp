@@ -1,4 +1,4 @@
-/* jshint esversion: 6 */
+
 function commonCharacterCount(s1, s2) {
 	let array1 = s1.split('');
 	let array2 = s2.split('');
@@ -14,7 +14,7 @@ function commonCharacterCount(s1, s2) {
 			array2.splice(index, 1);
 		}
 	});
-	return count;
+	return count
 }
 // Given two strings, find the number of common characters between them.
 

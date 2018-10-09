@@ -1,11 +1,11 @@
 /* jshint esversion: 6 */
-
-function reverseParentheses(s) {
-	//string to array
-	let arr = s.split('');
-	//will hold of original array as values in parens are removed
-	let modifiedArrs = [];
-	let contents = [];
+/* eslint no-console: ["error", { allow: ["warn", "error"] }] */
+function reverseParentheses (s) {
+// string to array
+  let arr = s.split('');
+  // will hold of original array as values in parens are removed
+  let modifiedArrs = [];
+  let contents = [];
 	//will hold each sub arr as parens are stripped
 	let strippedArrs = [];
 	//will hold start indexes parens of each sub array
@@ -26,7 +26,7 @@ function reverseParentheses(s) {
 				startParenes = true;
 				parenCount++;
 				startIndexes.push(i);
-			} else if(arr[i] == "(" && parenCount > 0) {
+			} else if (arr[i] == "(" && parenCount > 0) {
 				foundContent.push(arr[i]);
 				parenCount++;
 			} else if (arr[i] == ")" && parenCount === 1) {
@@ -37,9 +37,9 @@ function reverseParentheses(s) {
 				parenCount--;
 			} else if (parenCount > 0 && parenCount < startParenCount + 2) {
 
-				
+
 				foundContent.push(arr[i]);
-			}else if (startParenes == false){
+			} else if (startParenes == false) {
 				modifiedArr.push(arr[i]);
 			}
 			//console.log('pc: ' + parenCount);
@@ -50,7 +50,7 @@ function reverseParentheses(s) {
 		// 	let parenCount = 0;
 		// 	let modifiedArr = [];
 		// 	for (let i = 0; i < arr.length; i++) {
-				
+
 		// 		if (arr[i] == "(" && parenCount === 0) {
 		// 			startParenes = true;
 		// 			parenCount++;
@@ -76,25 +76,25 @@ function reverseParentheses(s) {
 		//console.log(strippedArr);
 		//contents.push(foundContent);
 		//console.log(foundContent);
-		
+
 		//let stripped = foundContent.filter(filterOutParen);
 		contents.push(foundContent);
 		modifiedArrs.push(modifiedArr);
 		//console.log(strippedArr);
 		//return strippedArr;
-		
+
 	}
 
 	function filterOutParen(item, index) {
 		let leftParenCount = 0;
-		if(item == '(' && leftParenCount === 0){
+		if (item == '(' && leftParenCount === 0) {
 			leftParenCount++;
 			startIndexes.push(index);
 			return false;
-		} else if(item == '(' && leftParenCount > 0){
+		} else if (item == '(' && leftParenCount > 0) {
 			leftParenCount++;
 			return true;
-		} else if (item == ')' && leftParenCount === 0){
+		} else if (item == ')' && leftParenCount === 0) {
 			return false;
 		} else if (item == ')' && leftParenCount > 0) {
 			leftParenCount--;
@@ -104,15 +104,15 @@ function reverseParentheses(s) {
 		}
 	}
 
-	function getContent(){
-		index = 0;
+	function getContent() {
+		let index = 0;
 		resolveParens(arr);
 
-		while(contents[index].includes('(')){
+		while (contents[index].includes('(')) {
 			resolveParens(contents[index]);
 			index++;
 		}
-		contents.forEach(function(e){
+		contents.forEach(function (e) {
 			let stripped = e.filter(filterOutParen).reverse();
 			strippedArrs.push(stripped);
 		});
@@ -127,7 +127,7 @@ function reverseParentheses(s) {
 		for (let i = strippedArrs.length - 1; i >= 0; i--) {
 			//console.log(i,startIndexes[i], strippedArrs[i]);
 			//debugger;
-			modifiedArrs[i].splice(startIndexes[i], 0,...strippedArrs[i]);
+			modifiedArrs[i].splice(startIndexes[i], 0, ...strippedArrs[i]);
 			console.log(modifiedArrs);
 		}
 		//console.log(temp);
@@ -138,7 +138,7 @@ function reverseParentheses(s) {
 
 	return getContent();
 	//reverse contents in parens
-	
+
 	//console.log(contents);
 	//let reversed = contents.reverse();
 	//put back into array
@@ -160,9 +160,9 @@ function reverseParentheses(s) {
 // For string s = "a(bc)de", the output should be
 // reverseParentheses(s) = "acbde".
 // document.getElementById("start").addEventListener("click", function(){
-	//document.getElementById("demo").innerHTML = "Hello World";
-	//const s = "a(bc)de";
-	const s1 = "a(bcd(efg)h)i";
+//document.getElementById("demo").innerHTML = "Hello World";
+//const s = "a(bc)de";
+const s1 = "a(bcd(efg)h)i";
 //   console.log(reverseParentheses(s1));//	
 // });
 

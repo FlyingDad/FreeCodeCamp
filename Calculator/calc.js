@@ -3,8 +3,8 @@
 $( document ).ready(function() {
 	console.log( "ready!" );
 
-let accumulator = 0;
-let inputReg = 0;
+let accumulator = [];
+let inputReg = [];
 let sign = true;   // true = pos, false: neg number
 let calcInProgress = false; // true = button pessed)except equal
 let operation = '';
@@ -37,7 +37,7 @@ display(0);
 					equalPressed = false;
 					return;
 				}
-			} else if (operation == '') {
+			} else if (input == '') {
 				return;
 			}else{
 				performCalc(input);
@@ -119,20 +119,23 @@ display(0);
 	// Number pressed
 	function numberPressed(number){
 		//if first number pressed, put it in indexreg
-		let val = Number(number);
-		if(inputReg === 0){
-			inputReg = val;
-		} else {
+		//let val = Number(number);
+		// if(inputReg.length === 0){
+		// 	inputReg.push(number);
+		// } else {
 			//shift number left ( x 10)
-			inputReg *= 10;
-			inputReg += val;
-		}	
+			//inputReg *= 10;
+			inputReg.push(number);
+		//}	
+		console.log(inputReg[0]);
+		//let display1 = inputReg.join('');
 		display(inputReg);
 		testDisplay();
 	}
 
 	function display(result){
-		console.log('result: ' + result);
+		let display = result.join('');
+		console.log('result: ' + result, typeof(result));
 		$('.col-display h2').text(result.toString());
 		// $('#acc').text(accumulator);
 		// $('#ireg').text(inputReg);
