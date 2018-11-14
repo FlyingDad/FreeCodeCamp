@@ -6,7 +6,7 @@
   box-sizing: border-box; }
 
 body {
-  background-color: #eee;
+  background: linear-gradient(135deg, #feffff 0%, #ddf1f9 35%, #a0d8ef 100%);
   font-family: 'Lato', sans-serif; }
 
 #page-wrapper {
@@ -47,7 +47,7 @@ header {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: #eee; }
+  background-color: #c1f6ff; }
   @media (max-width: 600px) {
     header {
       flex-wrap: wrap; } }
@@ -103,6 +103,7 @@ nav {
   height: 200px;
   margin-top: 50px; }
   #hero h2 {
+    color: blue;
     margin-bottom: 20px;
     word-wrap: break-word; }
   #hero input[type="email"] {
@@ -110,15 +111,16 @@ nav {
     width: 100%;
     padding: 5px; }
   #hero input[type="submit"] {
+    color: white;
     max-width: 350px;
     width: 100%;
     height: 30px;
     margin: 15px 0;
     border: 0;
-    background-color: #f1c40f; }
+    background-color: #007a0a; }
     #hero input[type="submit"]:hover {
-      background-color: orange;
-      transition: background-color 1s; }
+      background-color: #00a80e;
+      transition: background-color .3s; }
   @media (max-width: 650px) {
     #hero {
       margin-top: 120px; } }
@@ -131,7 +133,7 @@ nav {
     justify-content: center;
     height: 125px;
     width: 20vw;
-    color: darkorange; }
+    color: #00c410; }
     @media (max-width: 550px) {
       #features .icon {
         display: none; } }
@@ -175,8 +177,8 @@ nav {
     border: 1px solid #000;
     border-radius: 3px; }
     #pricing #tenor .level, #pricing #bass .level, #pricing #valve .level {
-      background-color: #ddd;
-      color: black;
+      background-color: #0014c9;
+      color: white;
       padding: 15px 0;
       width: 100%;
       text-transform: uppercase;
@@ -188,13 +190,14 @@ nav {
       #pricing #tenor ol li, #pricing #bass ol li, #pricing #valve ol li {
         padding: 5px 0; }
     #pricing #tenor button, #pricing #bass button, #pricing #valve button {
+      color: whitesmoke;
       border: 0;
       margin: 15px 0;
-      background-color: #f1c40f;
+      background-color: #007a0a;
       font-weight: 400; }
       #pricing #tenor button:hover, #pricing #bass button:hover, #pricing #valve button:hover {
-        background-color: orange;
-        transition: background-color 1s; }
+        background-color: #00a80e;
+        transition: background-color .3s; }
   @media (max-width: 800px) {
     #pricing {
       flex-direction: column; }
@@ -205,19 +208,22 @@ nav {
         margin-bottom: 10px; } }
 
 footer {
+  width: 100%;
   margin-top: 30px;
-  background-color: #ddd;
+  background-color: #0014c9;
   padding: 20px; }
   footer ul {
     display: flex;
-    justify-content: flex-end; }
+    justify-content: center; }
     footer ul li {
       padding: 0 10px; }
+      footer ul li a {
+        color: white; }
   footer span {
     margin-top: 5px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     font-size: 0.9em;
-    color: #444; }
+    color: whitesmoke; }
 
 /*# sourceMappingURL=style.css.map */
