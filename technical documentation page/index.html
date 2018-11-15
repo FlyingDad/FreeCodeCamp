@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="style.css">
+	<title>CSS Animations</title>
+</head>
+<body>
+	
+<nav id="navbar">
+  <header>CSS Animations</header>
+  <ul> 
+    <a class="nav-link" href="#Introduction" rel="internal"><li>Introduction</li></a>
+    <a class="nav-link" href="#Configuration" rel="internal"><li>Configuration</li></a>
+    <a class="nav-link" href="#Keyframes" rel="internal"><li>Keyframes</li></a>
+    <a class="nav-link" href="#Animation" rel="internal"><li>Animation</li></a>
+    <a class="nav-link" href="#Animation_delay" rel="internal"><li>Animation Delay</li></a>
+    <a class="nav-link" href="#Animation_direction" rel="internal"><li>Animation Direction</li></a>
+    <a class="nav-link" href="#Animation_duration" rel="internal"><li>Animation Duration</li></a>
+    <a class="nav-link" href="#Animation_fill_mode" rel="internal"><li>Animation Fill Mode</li></a>
+    <a class="nav-link" href="#Animation_iteration_count" rel="internal"><li>Animation Iteration Count</li></a>
+    <a class="nav-link" href="#Animation_name" rel="internal"><li>Animation Name</li></a>
+    <a class="nav-link" href="#Animation_play_state" rel="internal"><li>Animation Play State</li></a>
+    <a class="nav-link" href="#Animation_timing_function" rel="internal"><li>Animation Timing Function</li></a>
+		<a class="nav-link" href="#Reference" rel="internal"><li>Reference</li></a>
+  </ul>
+</nav>
+<main id="main-doc">
+  <section class="main-section" id="Introduction">
+    <header>Introduction</header>
+    <article>  
+			<p>CSS animations make it possible to animate transitions from one CSS style configuration to another. Animations consist of two components, a style describing the CSS animation and a set of keyframes that indicate the start and end states of the animation’s style, as well as possible intermediate waypoints.</p>
+			<ol>
+
+				<li>There are three key advantages to CSS animations over traditional script-driven animation techniques:
+				</li>
+				<li>The animations run well, even under moderate system load. Simple animations can often perform poorly in JavaScript (unless they’re well made). The rendering engine can use frame-skipping and other techniques to keep the performance as smooth as possible.</li>
+				<li>	Letting the browser control the animation sequence lets the browser optimize performance and efficiency by, for example, reducing the update frequency of animations running in tabs that aren't currently visible.</li>
+			</ol>
+    </article>
+	</section>	
+  <section class="main-section" id="Configuration">
+    <header>Configuration</header>
+    <article>
+      <p>To create a CSS animation sequence, you style the element you want to animate with the animation property or its sub-properties. This lets you configure the timing, duration, and other details of how the animation sequence should progress. This does not configure the actual appearance of the animation, which is done using the @keyframes at-rule as described in Defining the animation sequence using <a href="#Keyframes" rel="internal">Keyframes</a></p>
+
+      <li>A general understanding of the Internet and the World Wide Web (WWW).</li>
+      <li>Good working knowledge of HyperText Markup Language (HTML).</li>
+<li>Some programming experience. If you are new to programming, try one of the tutorials linked on the main page about JavaScript.</li>
+      </artice>
+    </section>
+  <section class="main-section" id="Keyframes">
+    <header>Keyframes</header>
+    <article>
+
+		<p>The @keyframes CSS at-rule controls the intermediate steps in a CSS animation sequence by defining styles for keyframes (or waypoints) along the animation sequence. This gives more control over the intermediate steps of the animation sequence than transitions.</p>
+		
+		<code>@keyframes slidein {
+	from {
+		margin-left: 100%;
+		width: 300%;
+	}
+			
+	to {
+		margin-left: 0%;
+		width: 100%;
+	}
+}</code>
+
+		<p>JavaScript can access the @keyframes at-rule with the CSS object model interface CSSKeyframesRule.</p>
+
+		<p>To use keyframes, create a @keyframes rule with a name that is then used by the animation-name property to match an animation to its keyframe declaration. Each @keyframes rule contains a style list of keyframe selectors, which specify percentages along the animation when the keyframe occurs, and a block containing the styles for that keyframe.</p>
+		
+		<p>You can list the keyframe percentages in any order; they will be handled in the order they should occur.</p>
+    </article>
+  </section>
+  <section class="main-section" id="Animation">
+    <header>Animation</header>
+    <article> 
+				<p>The animation shorthand CSS property sets an animated transition between styles. It is a shorthand for animation-name, animation-duration, animation-timing-function, animation-delay, animation-iteration-count, animation-direction, animation-fill-mode, and animation-play-state.</p>
+<code>/* @keyframes duration | timing-function | delay | 
+	iteration-count | direction | fill-mode | play-state | name */
+	animation: 3s ease-in 1s 2 reverse both paused slidein;
+	
+/* @keyframes duration | timing-function | delay | name */
+	animation: 3s linear 1s slidein;
+	
+/* @keyframes duration | name */
+	animation: 3s slidein;
+</code>
+    </article>
+    </section>
+  <section class="main-section" id="Animation_delay">
+    <header>Animation Delay</header>
+    <p>
+			The animation-delay CSS property sets when an animation starts. The animation can start later, immediately from its beginning, or immediately and partway through the animation.
+    </p>
+    
+		<h4>Syntax</h4>
+		<code>/* Single animation */
+animation-delay: 3s;
+animation-delay: 0s;
+animation-delay: -1500ms;
+
+/* Multiple animations */
+animation-delay: 2.1s, 480ms;</code>
+<p>
+	It is often convenient to use the shorthand property animation to set all animation properties at once.
+</p>
+    </section>
+  <section class="main-section" id="Animation_direction">
+    <header>Animation Direction</header>
+    <article>
+      <p>
+				The animation-direction CSS property sets whether an animation should play forwards, backwards, or alternating back and forth.
+      </p>
+      
+      <h4>
+        Syntax
+			</h4>
+			<code>/* Single animation */
+animation-direction: normal;
+animation-direction: reverse;
+animation-direction: alternate;
+animation-direction: alternate-reverse;
+
+/* Multiple animations */
+animation-direction: normal, reverse;
+animation-direction: alternate, reverse, normal;
+
+/* Global values */
+animation-direction: inherit;
+animation-direction: initial;
+animation-direction: unset;</code>
+<p>
+	It is often convenient to use the shorthand property animation to set all animation properties at once.
+</p>
+    </article>
+    </section>
+  <section class="main-section" id="Animation_duration">
+    <header>Animation Duration</header>
+    <article>
+		<p> The animation-duration CSS property sets the length of time that an animation takes to complete one cycle.</p>
+		<h4>Syntax</h4>
+		<code>/* Single animation */
+animation-duration: 6s;
+animation-duration: 120ms;
+
+/* Multiple animations */
+animation-duration: 1.64s, 15.22s;
+animation-duration: 10s, 35s, 230ms;</code>
+<p>It is often convenient to use the shorthand property animation to set all animation properties at once.</p>
+    </article>
+    </section>
+  <section class="main-section" id="Animation_fill_mode">
+    <header>Animation Fill Mode</header>
+    <article>
+<p>The animation-fill-mode CSS property sets how a CSS animation applies styles to its target before and after its execution.</p>
+
+
+<code>/* Single animation */
+animation-fill-mode: none;
+animation-fill-mode: forwards;
+animation-fill-mode: backwards;
+animation-fill-mode: both;
+
+/* Multiple animations */
+animation-fill-mode: none, backwards;
+animation-fill-mode: both, forwards, none;</code>
+<p>It is often convenient to use the shorthand property animation to set all animation properties at once.</p>
+    </article>
+    </section>
+  <section class="main-section" id="Animation_iteration_count">
+    <header>Animation Iteration Count</header>
+    <article>
+			<p>The animation-iteration-count CSS property sets the number of times an animation cycle should be played before stopping.</p>
+			<p>If multiple values are specified, each time the animation is played the next value in the list is used, cycling back to the first value after the last one is used.</p>
+			<h4>Syntax</h4>
+      <code>/* Keyword value */
+animation-iteration-count: infinite;
+
+/* <number> values */
+animation-iteration-count: 3;
+animation-iteration-count: 2.4;
+
+/* Multiple values */
+animation-iteration-count: 2, 0, infinite;</code>
+			<p>It is often convenient to use the shorthand property animation to set all animation properties at once.</p>
+    </article>
+    </section>
+  <section class="main-section" id="Animation_name">
+    <header>Animation Name</header>
+    <article>
+      <p>The animation-name CSS property sets one or more animations to apply to an element. Each name is an @keyframes at-rule that sets the property values for the animation sequence.</p>
+			
+			<h4>Syntax</h4>
+      <code>/* Single animation */
+animation-name: none;
+animation-name: test_05;
+animation-name: -specific;
+animation-name: sliding-vertically;
+
+/* Multiple animations */
+animation-name: test1, animation4;
+animation-name: none, -moz-specific, sliding;
+
+/* Global values */
+animation-name: initial
+animation-name: inherit
+animation-name: unset</code>
+<p>It is often convenient to use the shorthand property animation to set all animation properties at once.</p>
+    </article>
+    </section>
+  <section class="main-section" id="Animation_play_state">
+    <header>Animation Play State</header>
+    <article>
+			<p>The animation-play-state CSS property sets whether an animation is running or paused.</p>
+			<p>Resuming a paused animation will start the animation from where it left off at the time it was paused, rather than starting over from the beginning of the animation sequence.</p>
+			<h4>Syntax</h4>
+      <code>/* Single animation */
+animation-play-state: running;
+animation-play-state: paused;
+
+/* Multiple animations */
+animation-play-state: paused, running, running;
+
+/* Global values */
+animation-play-state: inherit;
+animation-play-state: initial;
+animation-play-state: unset;</code>
+    </article>
+		</section>
+	<section class="main-section" id="Animation_timing_function">
+			<header>Animation Timing Function</header>
+			<article>
+				<p>The animation-timing-function CSS property sets how an animation progresses through the duration of each cycle.</p>
+				<p>It is often convenient to use the shorthand property animation to set all animation properties at once.</p>
+				<h4>Syntax</h4>
+				<code>/* Keyword values */
+animation-timing-function: ease;
+animation-timing-function: ease-in;
+animation-timing-function: ease-out;
+animation-timing-function: ease-in-out;
+animation-timing-function: linear;
+animation-timing-function: step-start;
+animation-timing-function: step-end;
+
+/* Function values */
+animation-timing-function: cubic-bezier(0.1, 0.7, 1.0, 0.1);
+animation-timing-function: steps(4, end);
+animation-timing-function: frames(10);
+
+/* Multiple animations */
+animation-timing-function: ease, step-start, cubic-bezier(0.1, 0.7, 1.0, 0.1);
+
+/* Global values */
+animation-timing-function: inherit;
+animation-timing-function: initial;
+animation-timing-function: unset;</code>
+<p>Timing functions may be specified on individual keyframes in a @keyframes rule. If no animation-timing-function is specified on a keyframe, the corresponding value of animation-timing-function from the element to which the animation is applied is used for that keyframe.</p>
+<p>A keyframe's timing function is applied on a property-by-property basis from the keyframe on which it is specified until the next keyframe specifying that property, or until the end of the animation if there is no subsequent keyframe specifying that property. As a result, an animation-timing-function specified on the 100% or to keyframe will never be used.</p>
+			</article>
+			</section>
+  <section class="main-section" id="Reference">
+    <header>Reference</header>
+    <article>
+      <li>All the documentation in this page is taken from <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations" target="_blank">MDN - CSS Animations</a>
+    </article>
+		</section>
+		
+</main>
+<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+</body>
+</html>
