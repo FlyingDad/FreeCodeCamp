@@ -1,8 +1,9 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto");
 html,
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
   text-align: center;
-  background-color: aqua;
+  background-color: #0c011b;
 }
 
 * {
@@ -11,70 +12,77 @@ body {
 }
 
 .intro {
+  color: #eef9fd;
   top: 10;
-  background: #e0ebe8;
-  min-height: 55vh;
+  background: #000000;
+  height: 55vh;
   padding-top: 45vh;
-  /*   line-height: 100vh; */
-  /*   width:100%;
-  height:96vh;
-border:solid; */
+  font-size: 2rem;
+  background: linear-gradient(135deg, #42006b 0%, #010742 54%, #42006b 100%);
 }
 
 .intro p {
-  color: green;
+  margin-top: 35px;
+  color: #0acfe9;
+  font-size: 1.4rem;
 }
 
 nav ul {
   text-align: right;
   position: fixed;
   width: 100%;
-  background-color: #12b68a;
+  background-color: #010742;
+  border-bottom: 1px solid green;
 }
 
 nav ul li {
   display: inline-block;
-  margin: 55px;
+  margin: 35px;
   margin-bottom: 15px;
   margin-top: 25px;
 }
 
 nav ul li a {
-  color: #008080;
+  color: #00e2e2;
   text-decoration: none;
 }
 
 nav ul li a:hover {
-  color: green;
+  color: #a924f7;
 }
 
 .work {
-  padding-top: 60px;
-  margin-top: -60px;
+  display: flex;
+  width: 80%;
+  margin: 0 auto;
 }
 
-.work .work-header {
-  margin-top: 50px;
-  color: #008080;
+.work-header {
+  margin: 30px auto 0 auto;
+  color: #00dada;
   font-weight: normal;
 }
 
 .project {
   text-decoration: none;
-  color: #008080;
-  display: inline-block;
+  color: #1ddfe6;
+  padding: 10px 10px;
   overflow: hidden;
-  border: 2px solid lightblue;
-  height: 220px;
-  width: 280px;
+  width: 45%;
+  max-width: 480px;
   margin: 40px 100px;
-  /*   background: url("https://res.cloudinary.com/dck40m3wf/image/upload/v1455459914/Portfolio/fancy-floral-pattern-384.jpg") repeat; */
+  border: 1px solid #0d00c7;
+}
+
+.project a {
+  text-decoration: none;
 }
 
 .project-pic {
   width: 100%;
   height: 180px;
-  border-bottom: 2px solid lightblue;
+  object-fit: contain;
+  border-bottom: 2px solid #ade6d8;
 }
 
 .project-title {
@@ -154,15 +162,4 @@ footer {
 
 footer a {
   color: white;
-}
-
-@media only screen and (max-width: 367px) {
-  .contact-details {
-    border: 2px solid #90C695;
-    border-radius: 0;
-    width: 90px;
-    height: 20px;
-    padding: 10px;
-    line-height: normal;
-  }
 }
