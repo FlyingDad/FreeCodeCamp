@@ -2,7 +2,7 @@
 [Rr]aw Images/
 [Tt]esting/
 *.log
-*scss
+# *scss
 *node_modules
-
+*NPM/*
 

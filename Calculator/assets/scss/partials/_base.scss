@@ -1,0 +1,102 @@
+body {
+	background: rgb(34, 34, 34);
+	color: white;
+	font-family: $roboto;
+	font-size: 16px;
+	line-height: 1.6;
+	font-weight: 300;
+	height: 100%;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	font-family: $raleway;
+	font-weight: 400;
+	color:gold;
+}
+
+// $neat-grid: (
+//   columns: 12,
+// 	gutter: 5px
+// );
+
+$article-layout-grid: (
+  columns: 4,
+  gutter: 5px,
+);
+
+.content {
+	text-align: center;
+	//border: 1px solid red;
+	width: 80%;
+	margin-left: 10%;
+}
+
+.container {
+	width: 50%;
+	border: 1px solid rgb(44, 97, 117);
+	border-radius: 8px;
+	margin: 0 auto;
+	background: black;
+}
+
+.row-display {
+	@include grid-container;
+	padding-right: 4px;
+}
+
+.col-display {
+	border: 2px solid rgb(63, 94, 18);
+	border-radius: 5px;
+	text-align: right;
+	background: rgb(46, 46, 46);
+	@include grid-column(4, $article-layout-grid);
+	margin-bottom: 5px;
+	margin-top: 5px;
+	h2 {
+		padding-right: 10px;
+		font-size: 50px;
+		margin: 0 0;
+	}
+}
+
+.row {
+	@include grid-container;
+	.bottom {
+		margin-bottom: 5px;
+	}
+}
+// .bottom {
+// 	@include grid-push(1);
+// }
+
+.button {
+	font-size: 30px;
+	@include grid-column(1, $article-layout-grid);
+  margin-bottom: 5px;
+	background-color: blue;
+	height: 70px;
+	color: white;
+	border: 2px solid rgb(60, 112, 224);
+	border-radius: 5px;
+	outline: none;
+	cursor: pointer;
+	//transition-duration: 0.4s;
+	&:active {
+		background-color: rgb(69, 69, 226);
+	}
+}
+
+.button-double {
+	@include grid-column(2, $article-layout-grid);
+	font-size: 30px;
+	background: blue;
+	height: 70px;
+	border-radius: 5px;
+	border: 2px solid rgb(60, 112, 224);
+	color: white;	
+	outline: none;
+	&:active {
+		background-color: rgb(69, 69, 226);
+	}
+}
+
