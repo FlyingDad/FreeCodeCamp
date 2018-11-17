@@ -4,5 +4,4 @@
 *.log
 # *scss
 *node_modules
-*NPM/*
-
+NPM
