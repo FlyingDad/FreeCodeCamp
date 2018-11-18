@@ -1,0 +1,29 @@
+.Main {
+	// background-color: blue;
+	width: 490px;
+	display: grid;
+	grid-template-columns: 120px 120px 120px 120px;
+	grid-template-rows: auto;
+	grid-row-gap: 2px;
+	grid-column-gap: 2px;
+	justify-content: center;
+	margin: 120px auto;
+	// border-bottom: 2px solid blue;
+	// border-top: 2px solid blue;
+
+	.item-equal {
+		grid-area: equal;
+	}
+
+	.item-display {
+		grid-area: display;
+	}
+
+	grid-template-areas:
+		'display display display display'
+		'. . . .'
+		'. . . equal'
+		'. . . equal'
+		'. . . equal'
+		'. . . equal';
+}
