@@ -9,7 +9,9 @@ class Main extends Component {
 		inputBuffer: null,
 		decimalSet: false,
 		operation: null,
-		operationPressed: false
+		operationPressed: false,
+		modValue: null,
+		equalActive: false
 	};
 
 	keypressHandler = id => {
@@ -28,6 +30,12 @@ class Main extends Component {
 
 	operationEntered = op => {
 		const currentNum = this.state.display;
+		//operation being pressed after second number entered (instead of equal)
+		if(this.state.inputBuffer && !this.state.operationPressed && !this.state.equalActive){
+			this.setState({operation: op, operationPressed: true, equalActive: false})
+			this.equalPressed();
+			return;
+		} 
 		this.setState({
 			operation: op,
 			inputBuffer: currentNum,
@@ -38,47 +46,59 @@ class Main extends Component {
 	numberEntered = num => {
 		if (!this.state.inputBuffer) {
 			if (this.state.display === '0') {
-				this.setState({ display: num });
+				this.setState({ display: num, equalActive: false });
 			} else {
 				const newNum = this.state.display + num;
-				this.setState({ display: newNum });
+				this.setState({ display: newNum, equalActive: false });
 			}
 			// operation pressed
 		} else {
 			if (this.state.operationPressed) {
-				this.setState({ display: num, operationPressed: false });
+				this.setState({ display: num, operationPressed: false, equalActive: false });
 			} else {
 				const newNum = this.state.display + num;
-				this.setState({ display: newNum });
+				this.setState({ display: newNum, equalActive: false });
 			}
 		}
 	};
 
 	equalPressed = () => {
-		const firstNum = parseFloat(this.state.inputBuffer);
-		const secondNumber = parseFloat(this.state.display);
-		const op = this.state.operation;
-		let result;
-		if (op === '+') {
-			result = firstNum + secondNumber;
-		} else if (op === '−') {
-			result = firstNum - secondNumber;
-		} else if (op === '×') {
-			result = firstNum * secondNumber;
-		} else if (op === '÷') {
-			result = firstNum / secondNumber;
-		}
-		this.setState({ display: String(result) });
+		if(this.state.inputBuffer) {
+			console.log('stage 1')
+			let firstNum;
+			let secondNumber;
+			if(this.state.operation && this.state.modValue && this.state.equalActive){
+				firstNum = parseFloat(this.state.display);
+				secondNumber = this.state.modValue;
+			} else {
+				firstNum = parseFloat(this.state.inputBuffer);
+				secondNumber = parseFloat(this.state.display);
+			}
+			console.log('stage 2 ' + firstNum + ' ' + secondNumber)
+			const op = this.state.operation;
+			let result;
+			if (op === '+') {
+				result = firstNum + secondNumber;
+			} else if (op === '−') {
+				result = firstNum - secondNumber;
+			} else if (op === '×') {
+				result = firstNum * secondNumber;
+			} else if (op === '÷') {
+				result = firstNum / secondNumber;
+			}
+			const trimmedResult = String(result).substring(0, 12); // max display length
+			this.setState({ display: String(trimmedResult), inputBuffer: String(result), modValue: secondNumber, equalActive: true});
+			}
 	};
 
 	decimalEntered = () => {
 		if (!this.state.decimalSet) {
 			if (this.state.operationPressed) {
 				const newNum = '0.';
-				this.setState({ display: newNum, decimalSet: true, operationPressed: false });
+				this.setState({ display: newNum, decimalSet: true, operationPressed: false, equalActive: false });
 			} else {
 			const newNum = this.state.display + '.';
-			this.setState({ display: newNum, decimalSet: true });
+			this.setState({ display: newNum, decimalSet: true, equalActive: false });
 			}
 		}
 	};
@@ -88,7 +108,9 @@ class Main extends Component {
 			display: '0',
 			decimalSet: false,
 			operation: null,
-			inputBuffer: null
+			inputBuffer: null,
+			equalActive: false,
+			modValue: null
 		});
 	}
 
