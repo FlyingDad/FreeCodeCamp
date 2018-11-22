@@ -15,32 +15,47 @@
 // 	return false;
 // }
 
+// function almostIncreasingSequence(sequence) {
+// 	let declines = 0;
+// 	for(let i = 0; i < sequence.length - 1; i++){
+// 			console.log('i: ', sequence[i], sequence[i+1])
+// 			if(sequence[i] >= sequence [i+1]){
+// 				console.log('next less than')
+// 					if(i <= sequence.length - 2){
+// 							console.log('i less than sequence + 2')
+// 							if(sequence[i] >= sequence [i+2]){
+// 									console.log('s2')
+// 									return false;
+// 							} else {
+// 							declines ++;
+// 					}
+// 					}
+// 			}
+// 			console.log(declines + '---------')
+// 	}
+// 	return declines <=1 ? true : false;
+// }
+
+
+//remove one at a time and check
 function almostIncreasingSequence(sequence) {
-	let declines = 0;
-	for(let i = 0; i < sequence.length - 1; i++){
-			console.log('i: ', sequence[i], sequence[i+1])
-			if(sequence[i] > sequence [i+1]){
-				console.log('next less than')
-					if(i <= sequence.length - 2){
-							console.log('i less than sequence + 2')
-							if(sequence[i] != sequence [i+2]){
-									console.log('s2')
-									declines ++;
-							} else {
-							declines ++;
-					}
-					}
-			}
-			console.log(declines + '---------')
-	}
-	return declines <=1 ? true : false;
+
 }
 
+checkIfAllIncreasing = arr => {
+	for(let i = 0; i < array.length-1; i++){
+		if(arr[0] >= arr[i+1]){
+			return false;
+		}
+	}
+}
 
-//console.log(almostIncreasingSequence([1, 3, 2, 1])); // false
-//console.log(almostIncreasingSequence([1, 3, 2])); // true
+console.log(almostIncreasingSequence([1, 3, 2, 1])); // false
+console.log(almostIncreasingSequence([1, 3, 2])); // true
 console.log(almostIncreasingSequence([1, 2, 1, 2])); // false
-//console.log(almostIncreasingSequence([1, 1, 1, 2, 3])); //false
+console.log(almostIncreasingSequence([1, 1, 1, 2, 3])); //false
+console.log(almostIncreasingSequence([40, 50, 60, 10, 20, 30])); //false
+
 // Given a sequence of integers as an array, determine whether it is possible to obtain a strictly increasing sequence by removing no more than one element from the array.
 
 // Example
