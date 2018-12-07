@@ -4,8 +4,13 @@ function chuckNorris(MESSAGE) {
 
 	// convert MESSAGE to binary
 	for(let i = 0; i < MESSAGE.length; i++){
-		binaryMessage += MESSAGE.charCodeAt(i).toString(2);
+		let binaryLetter = MESSAGE.charCodeAt(i).toString(2);
+		while (binaryLetter.length < 7)
+				binaryLetter = '0' + binaryLetter;
+		binaryMessage += binaryLetter;
+		
 	}
+	
 	let binaryMessageArr = binaryMessage.split('');
 	console.log(binaryMessageArr)
 	// iterate each bit and create chucks unary
@@ -16,10 +21,10 @@ function chuckNorris(MESSAGE) {
 	let block = '';
 	let counter = 0;
 	let currentBit = '';
-	binaryMessageArr.forEach(bit => {
+	binaryMessageArr.forEach((bit, index) => {
 
-		// new sequence
-		if(counter === 0 ) {
+		// initial sequence
+		if(index === 0) {
 			currentBit = bit;
 			counter++;
 			if(bit === '0') {
@@ -32,25 +37,28 @@ function chuckNorris(MESSAGE) {
 		//check for and of sequence, reset
 		else if(bit !== currentBit) {
 			counter = 0;
-			chucksUnary += block + ' ';
+			chucksUnary += block;
 			block = '';
+			currentBit = bit;
 			if(bit === '0') {
 				// console.log('0')
-				block += '00 0'
+				block += ' 00 0'
 			} else {
-				block += ('0 0')
+				block += (' 0 0')
 			}
 		} else {
 		// analyzing current sequence
 			block += '0'
 		}
 	})
+	chucksUnary += block;
 
 	return chucksUnary;
 }
 
 
-console.log(chuckNorris('C'));
+// console.log(chuckNorris('CC'));
+console.log(chuckNorris(' %')); //00 0 0 0 00 00 0 0 00 0 0 0
 
 // Here is the encoding principle:
 
