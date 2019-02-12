@@ -1,5 +1,22 @@
 function additionWithoutCarrying(param1, param2) {
+	let boysAnswer = 0;
+	if(param1 < param2) {
+		num1 = String(param1).padStart(String(param2).length, '0').split('').reverse().map(n => Number(n));
+		num2 = String(param2).split('').reverse().map(n => Number(n));
+	} else {
+		num2 = String(param1).split('').reverse().map(n => Number(n));
+		num1 = String(param2).padStart(String(param1).length, '0').split('').reverse().map(n => Number(n));
+	}
 
+	console.log(num1, num2)
+
+	for(let i = 0; i <= num1.length - 1; i++) {
+			// console.log(num1[i],  num2[i], ((num1[i] + num2[i]) % 10))
+			// console.log(Math.pow(10, i))
+			// console.log(((num1[i] + num2[i]) % 10) * Math.pow(10, i))
+			boysAnswer += ((num1[i] + num2[i]) % 10) * Math.pow(10, i);
+	}
+	return boysAnswer
 }
 
 
