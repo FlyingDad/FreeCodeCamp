@@ -1,14 +1,17 @@
 function rounders(n) {
-	let roundedNum = 0;
-	let numLength = String(n).length;
 
-	for(let i = 0; i < numLength - 1; i++) {
-		if()
-		console.log(n % 10)
+	let numArray = String(n).split('').reverse().map(n => Number(n));
+
+	for(let i = 0; i < numArray.length - 1; i++) {
+		
+		let digit = numArray[i];
+		numArray[i] = 0;
+		if(digit >= 5) {
+			numArray[i + 1] += 1;
+		}
 	}
 
-	// console.log(numLength)
-
+	return Number(numArray.reverse().join(''))
 }
 
 // We want to turn the given integer into a number that has only one non-zero digit using a tail rounding approach. This means that at each step we take the last non 0 digit of the number and round it to 0 or to 10. If it's less than 5 we round it to 0 if it's larger than or equal to 5 we round it to 10 (rounding to 10 means increasing the next significant digit by 1). The process stops immediately once there is only one non-zero digit left.
