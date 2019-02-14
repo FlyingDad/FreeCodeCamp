@@ -1,11 +1,17 @@
 function candles(candlesNumber, makeNew) {
 
-	let leftovers = candlesNumber;
+	let leftovers = candlesNumber, candlesBurned = candlesNumber, newCandles = 0;
 
-	candlesNumber = Math.floor(leftovers / makeNew);
-	leftovers -= (candlesNumber * makeNew);
-	console.log(candlesNumber, leftovers)
-	return '---'
+
+	while(leftovers >= makeNew) {
+		newCandles = Math.floor(leftovers / makeNew);
+		leftovers -= (newCandles * makeNew);
+		candlesBurned += newCandles
+		leftovers += newCandles;
+	}
+	
+	// console.log(candlesBurned, leftovers)
+	return candlesBurned
 }
 
 // When a candle finishes burning it leaves a leftover. makeNew leftovers can be combined to make a new candle, which, when burning down, will in turn leave another leftover.
