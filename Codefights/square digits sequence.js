@@ -1,4 +1,23 @@
+const getSumOfSquares = arr => {
+	let sum = 0;
+	arr.forEach(num => {
+		sum += num * num;
+	})
+	return sum;
+}
+
 function squareDigitsSequence(a0) {
+
+	const squareSums = [];
+	let nextNum = a0;
+
+	while(squareSums.indexOf(nextNum) < 0) {
+		squareSums.push(nextNum);
+		const arr = String(nextNum).split('');
+		nextNum = getSumOfSquares(arr);
+	}
+	
+	return squareSums.length + 1;
 
 }
 
@@ -25,7 +44,7 @@ console.log(squareDigitsSequence(a0));// = 9.
 // Thus, there are 9 elements in the sequence.
 
 a0 = 103;//, the output should be
-console.log(quareDigitsSequence(a0));// = 4.
+console.log(squareDigitsSequence(a0));// = 4.
 
 // The sequence goes as follows: 103 -> 10 -> 1 -> 1, 4 elements altogether.
 
