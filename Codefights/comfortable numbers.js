@@ -6,10 +6,15 @@ function comfortableNumbers(l, r) {
 	let values = [];
 
 	for(let i = l; i <= r; i++) {
-		let arr = String(i).split('');
-		console.log(arr)
+		let digitSum = String(i).split('').map(e => Number(e));
+
+		const length = (i + digitSum.reduce(reducer)) - (i - digitSum.reduce(reducer)) + 1;
+		let arr = Array(length).fill(i - digitSum.reduce(reducer)).map((e, index) => e + index)
+		values.push(arr);
+		
+		// console.log(i, values)
 	}
-	return '--'
+	return values
 }
 
 
