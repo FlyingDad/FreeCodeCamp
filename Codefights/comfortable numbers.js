@@ -1,5 +1,19 @@
+class cNumber {
+	constructor(num, confortableNums) {
+		this.num = num;
+		this.comfortableNums = confortableNums;
+	}
+}
+
 const reducer = (accumulator, currentValue) => accumulator + currentValue;
 
+const getComfortables = (l, r, arr, num) => {
+	// const comfortables = [];
+	const comfortables = arr.filter( e => {
+		return (e >= l && e <= r && e != num);
+	})
+	return comfortables;
+}
 
 function comfortableNumbers(l, r) {
 	// let arr = [...Array(5).keys()];
@@ -9,8 +23,11 @@ function comfortableNumbers(l, r) {
 		let digitSum = String(i).split('').map(e => Number(e));
 
 		const length = (i + digitSum.reduce(reducer)) - (i - digitSum.reduce(reducer)) + 1;
-		let arr = Array(length).fill(i - digitSum.reduce(reducer)).map((e, index) => e + index)
-		values.push(arr);
+		let arr = Array(length).fill(i - digitSum.reduce(reducer)).map((e, index) => e + index);
+		let newcNum = new cNumber(i, getComfortables(l, r, arr, i))
+		// values.push(getComfortables(l, r, arr, i));
+		values.push(newcNum)
+		// values.push(arr);
 		
 		// console.log(i, values)
 	}
